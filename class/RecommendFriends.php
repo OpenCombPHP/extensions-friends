@@ -1,15 +1,15 @@
 <?php
 namespace org\opencomb\friends;
 
-use org\jecat\framework\db\DB;
-
-use org\jecat\framework\auth\IdManager;
-
+use org\jecat\framework\db\sql\Order;
 use org\opencomb\coresystem\mvc\controller\Controller;
-use org\jecat\framework\message\Message;
 
 class RecommendFriends extends Controller
 {
+/**
+ * @example /MVC模式/模型/查询/随机排序
+ * 
+ */
 	public function createBeanConfig()
 	{
 		return array(
@@ -17,26 +17,23 @@ class RecommendFriends extends Controller
 			'view:recommendFriends'=>array(
 				'template'=>'RecommendFriends.html',
 				'class'=>'view',
+				'model'=>'users',
+			),
+			'model:users'=>array(
+				'class' => 'model' ,
+				'list'=>true,
+				'orm'=>array(
+					'orderRand'=>Order::rand,   //随机排序
+					'table'=>'coresystem:user',
+					'limit'=>4,
+				)
 			),
 		);
 	}
 
 	public function process()
 	{
-		$sUidWhere = '';
-		if($aCurrentId = IdManager::singleton()->currentId()){
-			$sUidWhere.=' WHERE `uid`<>'.$aCurrentId->userId();
-		}
-		
-		$arrUsers = array();
-		$aDriver = DB::singleton()->driver(true);
-		$aRecordset = $aDriver->query("SELECT * from `coresystem_user` $sUidWhere order by rand() limit 3 ");
-		foreach($aRecordset as $arrPurviewRow)
-		{
-			$arrUsers[] = $arrPurviewRow;
-		}
-		
-		$this->viewRecommendFriends->variables()->set('arrUsers',$arrUsers) ;
+		$this->users->load();
 	}
 }
 ?>
