@@ -8,22 +8,16 @@
 		<ul class="avatar_list">
 			<foreach for='$arrUserModels' item='aUserModel'>
 			<li>
-				<div class="avatar48">
-					<a href="space.php?uid={=$aUserModel['uid']} " title="{=$aUserModel['username']}"><img
-						src="{=$aUserModel['uid']}"
-						alt="{=$aUserModel['username']}" title="{=$aUserModel['username']}" /></a>
-				</div>
+					<a class="avatar48" href="space.php?uid={=$aUserModel['uid']} " title="{=$aUserModel['username']}"><img	src="{=$aUserModel['uid']}"	alt="{=$aUserModel['username']}" title="{=$aUserModel['username']}" /></a>
 				<p >
-					<a href="cp.php?ac=poke&op=send&uid={=$aUserModel['uid']}"
-						id="a_p_s_{=$aUserModel['uid']}" title="骚扰一下{=$aUserModel['username']}"
-						onclick="ajaxmenu(event, this.id, 99999, '', -1)">{=$aUserModel['username']}</a>
+					<a href="cp.php?ac=poke&op=send&uid={=$aUserModel['uid']}" id="a_p_s_{=$aUserModel['uid']}" title="骚扰一下{=$aUserModel['username']}" onclick="ajaxmenu(event, this.id, 99999, '', -1)">{=$aUserModel['username']}</a>
 				</p>
 			</li>
 			</foreach>
 		</ul>
 		</if>
 		<div class="clear"></div>
-		<div>
+		<div class="tip_text_r">
 			<a href="cp.php?ac=invite">邀请朋友加入</a>
 		</div>
 	</div>
