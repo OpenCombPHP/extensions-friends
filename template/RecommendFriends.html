@@ -6,22 +6,22 @@
 		你可能认识
 	</h2>
 	<div class="panel-content" id="sideblock_mutuality" >
-		<if '$theModel'>
+		<if '$arrUserModels'>
 		<ul class="avatar_list">
-			<model:foreach>
+			<foreach for='$arrUserModels' item='aUserModel'>
 			<li>
 				<div class="avatar48">
-					<a href="space.php?uid={=$theModel['uid']} " title="{=$theModel['username']}"><img
-						src="{=$theModel['uid']}"
-						alt="{=$theModel['username']}" title="{=$theModel['username']}" /></a>
+					<a href="space.php?uid={=$aUserModel['uid']} " title="{=$aUserModel['username']}"><img
+						src="{=$aUserModel['uid']}"
+						alt="{=$aUserModel['username']}" title="{=$aUserModel['username']}" /></a>
 				</div>
 				<p >
-					<a href="cp.php?ac=poke&op=send&uid={=$theModel['uid']}"
-						id="a_p_s_{=$theModel['uid']}" title="骚扰一下{=$theModel['username']}"
-						onclick="ajaxmenu(event, this.id, 99999, '', -1)">{=$theModel['username']}</a>
+					<a href="cp.php?ac=poke&op=send&uid={=$aUserModel['uid']}"
+						id="a_p_s_{=$aUserModel['uid']}" title="骚扰一下{=$aUserModel['username']}"
+						onclick="ajaxmenu(event, this.id, 99999, '', -1)">{=$aUserModel['username']}</a>
 				</p>
 			</li>
-			</model:foreach>
+			</foreach>
 		</ul>
 		</if>
 		<div class="clear"></div>

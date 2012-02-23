@@ -1,6 +1,8 @@
 <?php
 namespace org\opencomb\friends;
 
+use org\jecat\framework\auth\IdManager;
+
 use org\jecat\framework\db\sql\Order;
 use org\opencomb\coresystem\mvc\controller\Controller;
 
@@ -34,6 +36,22 @@ class RecommendFriends extends Controller
 	public function process()
 	{
 		$this->users->load();
+		$sUid = '';
+		if($aId = IdManager::singleton()->currentId()){
+			$sUid = $aId->userId();
+		}
+		$arrUserModels = array();
+		foreach($this->users->childIterator() as $aUserModel){
+			if($aUserModel['uid'] == $sUid){
+				continue;
+			}
+			$arrUserModels[] = $aUserModel;
+		}
+		if(count($arrUserModels) == 4){
+			array_shift($arrUserModels);
+		}
+		$this->recommendFriends->variables()->set('arrUserModels',$arrUserModels) ;
+		
 	}
 }
 ?>
