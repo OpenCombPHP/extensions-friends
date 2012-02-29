@@ -15,7 +15,7 @@ class RecommendFriends extends Controller
 		return array(
 			'title'=>'推荐好友',
 			'view:recommendFriends'=>array(
-				'template'=>'RecommendFriends.html',
+				'template'=>'friends:RecommendFriends.html',
 				'class'=>'view',
 			),
 		);
