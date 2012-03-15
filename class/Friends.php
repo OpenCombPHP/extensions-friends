@@ -1,6 +1,10 @@
 <?php 
 namespace org\opencomb\friends ;
 
+use org\jecat\framework\lang\aop\AOP;
+
+use org\jecat\framework\ui\xhtml\weave\WeaveManager;
+
 use org\opencomb\platform\ext\Extension ;
 
 class Friends extends Extension 
@@ -10,6 +14,7 @@ class Friends extends Extension
 	 */
 	public function load()
 	{
-		// todo ...
+		$aWeaveMgr = WeaveManager::singleton() ;
+		AOP::singleton()->register('org\\opencomb\\friends\\aspect\\NameCardAspect') ;
 	}
 }
