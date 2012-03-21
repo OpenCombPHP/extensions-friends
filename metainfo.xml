@@ -9,7 +9,4 @@
 	<package folder="/class" namespace="org.opencomb.friends" />
 	
 	<template folder="/template" />
-	
-	<publicFolder folder="/public" />
-	
 </Extension>
