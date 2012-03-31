@@ -2,7 +2,7 @@
 namespace org\opencomb\friends;
 
 use org\jecat\framework\auth\IdManager;
-
+use org\jecat\framework\db\ExecuteException;
 use org\jecat\framework\db\sql\Order;
 use org\opencomb\coresystem\mvc\controller\Controller;
 
@@ -31,7 +31,16 @@ class CreateFriend extends Controller
 	    
 	    $this->friends->setData("from",$aId->userId());
 	    $this->friends->setData("to",$this->params['uid']);
-		$this->friends->save(true);
+		
+		try{
+		    $this->friends->save(true);
+		}catch (ExecuteException $e)
+		{
+		    if(!$e->isDuplicate())
+		    {
+		        throw $e ;
+		    }
+		}
 	}
 }
 ?>
