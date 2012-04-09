@@ -21,6 +21,6 @@ class Friends extends Extension
 					'org\\opencomb\\coresystem\\widget\\NameCard::model()' ,
 					// advice
 					array('org\\opencomb\\friends\\aspect\\NameCardAspect','model')						
-			),__CLASS__) ;
+			),__FILE__) ;
 	}
 }
