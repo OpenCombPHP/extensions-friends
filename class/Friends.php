@@ -14,7 +14,13 @@ class Friends extends Extension
 	 */
 	public function load()
 	{
-		$aWeaveMgr = WeaveManager::singleton() ;
-		AOP::singleton()->register('org\\opencomb\\friends\\aspect\\NameCardAspect') ;
+		// AOP 注册
+		AOP::singleton()
+			->registerBean(array(
+					// jointpoint
+					'org\\opencomb\\coresystem\\widget\\NameCard::model()' ,
+					// advice
+					array('org\\opencomb\\friends\\aspect\\NameCardAspect','model')						
+			),__CLASS__) ;
 	}
 }

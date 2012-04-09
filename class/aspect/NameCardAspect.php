@@ -11,17 +11,7 @@ use org\jecat\framework\bean\BeanFactory;
 use org\jecat\framework\lang\aop\jointpoint\JointPointMethodDefine;
 
 class NameCardAspect
-{
-	/**
-	 * @pointcut
-	 */
-	public function pointcutNameCardAspect()
-	{
-		return array(
-			new JointPointMethodDefine('org\\opencomb\\coresystem\\widget\\NameCard','model') ,
-		) ;
-	}
-	
+{	
 	/**
 	 * @advice around
 	 * @for pointcutNameCardAspect
