@@ -30,10 +30,7 @@ class NameCardAspect
 		            'orm' => array(
 		                    'table' => 'friends:subscription' ,
         		            'keys'=>array('from','to'),
-		                    'where' => array(
-		                            array('eq','from',$aId->userId()) ,
-		                            array('eq','to',$model->uid) ,
-		                    ) ,
+		                    'where' => array( '`from` = @1 and `to` = @2' , $aId->userId() , $model->uid ) ,
 		            ) ,
 		    ), 'NameCardAspect' ) ;
 		    $aModel->load() ;

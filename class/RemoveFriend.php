@@ -31,11 +31,7 @@ class RemoveFriend extends Controller
 	{
 	    $aId = IdManager::singleton()->currentId() ;
 	    
-	    $this->friends->prototype()->criteria()->where()->eq('from',$aId->userId());
-	    $this->friends->prototype()->criteria()->where()->eq('to',$this->params['uid']);
-	    
-	    $this->friends->load();
+	    $this->friends->loadSql('from = @1 and to = @2' , $aId->userId() , $this->params['uid']);
 	    $this->friends->delete();
 	}
 }
-?>
