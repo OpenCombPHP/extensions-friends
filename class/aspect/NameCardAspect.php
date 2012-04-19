@@ -14,31 +14,29 @@ class NameCardAspect
 {	
 	/**
 	 * @advice around
-	 * @for pointcutNameCardAspect
+	 * @for pointcutProcess
 	 */
-	private function model()
+	private function process()
 	{
 		// 调用原始原始函数
-		$model = aop_call_origin() ;
+		aop_call_origin() ;
 		
-		if(IdManager::singleton()->currentId())
+		if(\org\jecat\framework\auth\IdManager::singleton()->currentId())
 		{
-		    $aId = IdManager::singleton()->currentId() ;
+		    $aId = \org\jecat\framework\auth\IdManager::singleton()->currentId() ;
 		    
-		    $aModel = \org\jecat\framework\bean\BeanFactory::singleton()->createBean( $conf=array(
+		    $aSubscriptionModel = \org\jecat\framework\bean\BeanFactory::singleton()->createBean( $conf=array(
 		            'class' => 'model' ,
 		            'orm' => array(
 		                    'table' => 'friends:subscription' ,
         		            'keys'=>array('from','to'),
-		                    'where' => array( '`from` = @1 and `to` = @2' , $aId->userId() , $model->uid ) ,
+		                    'where' => array( '`from` = @1 and `to` = @2' , $aId->userId() , $this->aModel->uid ) ,
 		            ) ,
 		    ), 'NameCardAspect' ) ;
-		    $aModel->load() ;
+		    $aSubscriptionModel->load() ;
 		    
-		    $model->addChild($aModel,'subscription');
+		    $this->aModel->addChild($aSubscriptionModel,'subscription');
+		    $this->view->variables()->set('aModel',$this->aModel) ;
 		}
-		
-		return $model;
 	}
 }
-?>

@@ -18,9 +18,9 @@ class Friends extends Extension
 		AOP::singleton()
 			->registerBean(array(
 					// jointpoint
-					'org\\opencomb\\coresystem\\widget\\NameCard::model()' ,
+					'org\\opencomb\\coresystem\\namecard\\NameCardExtension::process()' ,
 					// advice
-					array('org\\opencomb\\friends\\aspect\\NameCardAspect','model')						
+					array('org\\opencomb\\friends\\aspect\\NameCardAspect','process')						
 			),__FILE__) ;
 	}
 }
