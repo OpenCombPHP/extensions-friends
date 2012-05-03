@@ -31,7 +31,7 @@ class RemoveFriend extends Controller
 	{
 	    $aId = IdManager::singleton()->currentId() ;
 	    
-	    $this->friends->loadSql('from = @1 and to = @2' , $aId->userId() , $this->params['uid']);
+	    $this->friends->loadSql('`from` = @1 and `to` = @2' , $aId->userId() , $this->params['uid']);
 	    $this->friends->delete();
 	}
 }
