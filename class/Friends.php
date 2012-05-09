@@ -14,13 +14,15 @@ class Friends extends Extension
 	 */
 	public function load()
 	{
-		// AOP 注册
-		AOP::singleton()
-			->registerBean(array(
-					// jointpoint
-					'org\\opencomb\\coresystem\\namecard\\NameCardExtension::process()' ,
-					// advice
-					array('org\\opencomb\\friends\\aspect\\NameCardAspect','process')						
-			),__FILE__) ;
+		// AOP 注册 
+		
+		//已经移动到wonei扩展
+// 		AOP::singleton()
+// 			->registerBean(array(
+// 					// jointpoint
+// 					'org\\opencomb\\coresystem\\namecard\\NameCardExtension::process()' ,
+// 					// advice
+// 					array('org\\opencomb\\friends\\aspect\\NameCardAspect','process')						
+// 			),__FILE__) ;
 	}
 }
