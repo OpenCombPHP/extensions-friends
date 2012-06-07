@@ -5,9 +5,14 @@
 	<version>0.1</version>
 	<title>用户好友</title>
 	
+	<description>
+允许用户订阅自己感兴趣的用户。当两个用户互相订阅时就是“好友”。
+	</description>
  
 	<class>org.opencomb.friends.Friends</class>
 	<package folder="/class" namespace="org.opencomb.friends" />
 	
 	<template folder="/template" />
+	
+	<require type="extension" item="coresystem"><![CDATA[ =0.1 ]]></require>
 </Extension>
